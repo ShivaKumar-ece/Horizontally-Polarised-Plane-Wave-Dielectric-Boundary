@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horizontally Polarized Wave at a Dielectric–Dielectric Boundary </title>
+<style>
+:root{--bg:#eef1f5;--card:#fff;--ink:#1b2230;--mut:#5d6677;--line:#d8dde6;--E:#dc2626;--H:#2563eb;--K:#16a34a;--pur:#7c3aed;--org:#ea580c}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45}
+header{background:#0f172a;color:#fff;padding:12px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px}
+header h1{margin:0;font-size:19px;font-weight:600}
+header p{margin:2px 0 0;color:#94a3b8;font-size:13px}
+.chips{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:6px}
+.chip i{width:22px;height:4px;border-radius:2px;display:inline-block}
+.layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:14px;padding:14px;max-width:1750px;margin:0 auto}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.side{position:static!important;max-height:none!important}}
+.side{position:sticky;top:10px;align-self:start;max-height:calc(100vh - 20px);overflow:auto} 
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.card h2{margin:0 0 10px;font-size:16px;display:flex;align-items:center;gap:8px}
+.num{background:#0f172a;color:#fff;border-radius:6px;font-size:12px;padding:1px 8px}
+h3{margin:14px 0 6px;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.row{display:grid;grid-template-columns:92px 1fr 78px;gap:8px;align-items:center;margin:6px 0}
+.row label{font-size:13px}
+.row label small{display:block;color:var(--mut);font-size:11px;line-height:1.1}
+input[type=range]{width:100%;accent-color:#0f172a}
+input[type=number],select{width:100%;padding:4px 6px;border:1px solid var(--line);border-radius:6px;font:inherit;font-size:13px;background:#fff}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+button{font:inherit;font-size:12.5px;padding:5px 10px;border-radius:7px;border:1px solid #c7ced9;background:#f8fafc;cursor:pointer}
+button:hover{background:#eef2f7}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.primary{background:#0f172a;color:#fff;border-color:#0f172a}
+.medium{border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:8px 0}
+.medium b{font-size:13px}
+.hint{color:var(--mut);font-size:12px}
+canvas{display:block;width:100%}
+.timebar{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.timebar input[type=range]{flex:1;min-width:180px}
+.tread{font-variant-numeric:tabular-nums;font-size:13px;min-width:230px}
+.progress{height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;margin-top:6px}
+.progress div{height:100%;background:#0f172a;width:0}
+.toggles{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px;align-items:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:1250px){.grid2{grid-template-columns:1fr}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:8px}
+.tile{border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:#fafbfc}
+.tile .k{font-size:12px;color:var(--mut)}
+.tile .v{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+.status{border-radius:10px;padding:10px 12px;margin-top:8px;font-size:13.5px}
+.ok{background:#ecfdf3;border:1px solid #a7e3bd}
+.warn{background:#fff4ea;border:1px solid #fbc79a}
+.info{background:#f1f5ff;border:1px solid #c5d3fb}
+.purp{background:#f5f0ff;border:1px solid #d5c4fb}
+.big{font-size:22px;font-weight:700}
+.explain{background:#0f172a;color:#e5e7eb;border-radius:10px;padding:10px 14px;margin-top:10px;font-size:13.5px}
+.explain b{color:#fff}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{background:#f6f7f9;font-weight:600}
+.eq{font-family:"Cambria Math",Cambria,"Times New Roman",serif;font-size:15px}
+.f{margin:8px 0;padding:8px 12px;border-left:3px solid #0f172a;background:#f8fafc;border-radius:0 8px 8px 0}
+.f .eq{display:block;margin:3px 0}
+.tabs{display:flex;gap:4px;margin-bottom:6px}
+.tabs button.on{background:#0f172a;color:#fff;border-color:#0f172a}
+.E{color:var(--E);font-weight:600}.H{color:var(--H);font-weight:600}.K{color:var(--K);font-weight:600}
+kbd{border:1px solid #c7ced9;border-bottom-width:2px;border-radius:4px;padding:0 5px;font-size:12px;background:#fff}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Horizontally Polarized (Parallel) Plane Wave across a Dielectric–Dielectric Boundary || Developers: Shiva, Mohith, Pravallika</h1>
+    <p>Boundary is the plane z = 0 · Medium 1 (z &lt; 0) on the left, Medium 2 (z &gt; 0) on the right · x is up · H is along ±y (out of / into the screen)</p>
+  </div>
+  <div class="chips">
+    <span class="chip"><i style="background:var(--E)"></i>E field</span>
+    <span class="chip"><i style="background:var(--H)"></i>H field</span>
+    <span class="chip"><i style="background:var(--K)"></i>Propagation direction k̂</span>
+  </div>
+</header>
+
+<div class="layout">
+<!-- ================= SIDEBAR : INPUTS ================= -->
+<aside class="side">
+  <div class="card">
+    <h2><span class="num">1</span>Inputs</h2>
+    <div class="row" style="grid-template-columns:92px 1fr"><label>Preset</label>
+      <select id="preset">
+        <option value="">— choose a preset —</option>
+        <option value="1,1,2.25,1">Air → Glass (rarer → denser)</option>
+        <option value="1,1,81,1">Air → Water (rarer → denser)</option>
+        <option value="2.25,1,1,1">Glass → Air (denser → rarer, TIR)</option>
+        <option value="81,1,1,1">Water → Air (denser → rarer, TIR)</option>
+        <option value="2.25,1,81,1">Glass → Water</option>
+        <option value="1,1,4,4">Air → εr = μr = 4 (impedance matched)</option>
+      </select></div>
+
+    <div class="medium" style="background:#f7f9fc"><b>Medium 1</b> <span class="hint">(incident side)</span>
+      <div id="m1"></div><div class="hint" id="m1info"></div></div>
+    <div class="medium" style="background:#fbf8f2"><b>Medium 2</b> <span class="hint">(transmitted side)</span>
+      <div id="m2"></div><div class="hint" id="m2info"></div></div>
+    <div class="btns"><button id="swap">⇄ Swap media</button></div>
+
+    <h3>Angle of incidence</h3>
+    <div id="angrow"></div>
+    <div class="btns">
+      <button id="goN">Normal (0°)</button>
+      <button id="goB">Go to Brewster θ<sub>B</sub></button>
+      <button id="goC">Go to critical θ<sub>c</sub></button>
+    </div>
+
+    <h3>Incident field peaks</h3>
+    <div class="row"><label>E<sub>i0</sub><small>V/m</small></label><span class="hint">peak incident E</span><input type="number" id="E0" step="0.1" min="0.001"></div>
+    <div class="row"><label>H<sub>i0</sub><small>A/m</small></label><span class="hint">= E<sub>i0</sub>/η<sub>1</sub> (linked)</span><input type="number" id="H0" step="0.0001" min="0.000001"></div>
+
+    <h3>Other essential parameter</h3>
+    <div class="row"><label>Frequency<small>GHz</small></label><span class="hint">sets ω, β, λ, time scale</span><input type="number" id="fGHz" step="0.1" min="0.001"></div>
+    <p class="hint" style="margin:6px 0 0">Media are assumed lossless (σ = 0). In a lossless medium the frequency only rescales lengths and times; the angles and coefficients don't depend on it.</p>
+  </div>
+</aside>
+
+<!-- ================= MAIN ================= -->
+<main>
+  <!-- ANIMATION -->
+  <div class="card">
+    <h2><span class="num">2</span>Animation: incident, reflected and transmitted waves</h2>
+    <canvas id="main"></canvas>
+    <div class="timebar">
+      <button id="play" class="primary">⏸ Pause</button>
+      <button id="stepB" title="step back">◀ 15°</button>
+      <button id="stepF" title="step forward">15° ▶</button>
+      <input type="range" id="tslider" min="0" max="360" step="0.5" value="0" title="drag to move time">
+      <span class="tread" id="tread"></span>
+    </div>
+    <div class="progress"><div id="tprog"></div></div>
+    <div class="toggles">
+      <label><input type="checkbox" id="shInc" checked> Incident</label>
+      <label><input type="checkbox" id="shRef" checked> Reflected</label>
+      <label><input type="checkbox" id="shTr" checked> Transmitted</label>
+      <label><input type="checkbox" id="shBg" checked> Background: total H<sub>y</sub> pattern (wavefronts)</label>
+      <label>H drawn as <select id="hmode" style="width:auto"><option value="dots">⊙ / ⊗ symbols</option><option value="3d">3-D arrows</option></select></label>
+      <label>Speed <input type="range" id="speed" min="0.1" max="3" step="0.1" value="1" style="width:90px;vertical-align:middle"></label>
+      <label>Zoom <input type="range" id="zoom" min="0.5" max="2.5" step="0.1" value="1" style="width:90px;vertical-align:middle"></label>
+    </div>
+    <p class="hint" style="margin:8px 0 0">Press <kbd>Space</kbd> to pause or play. When paused, drag the time slider to step through time by hand. While paused you see only the spatial pattern, frozen at that instant. Along each ray: <span class="E">red arrows = E</span>, <span class="H">blue ⊙ = H out of screen (+y), ⊗ = into screen (−y)</span>, symbol size = |H|. The <span class="K">green line</span> is k̂. Line thickness of each ray ∝ the power it carries.</p>
+
+    <h3>Each wave on its own: E ⊥ H ⊥ k̂ (3-D view, same scale for all three)</h3>
+    <canvas id="trains"></canvas>
+  </div>
+
+  <!-- SPACE & TIME -->
+  <div class="card">
+    <h2><span class="num">3</span>Space and time dependence (total field)</h2>
+    <div class="row" style="grid-template-columns:150px 1fr 150px"><label>Probe position z</label><input type="range" id="probe" min="-1" max="1" step="0.005" value="-0.4"><span id="probeTxt" class="hint"></span></div>
+    <div class="grid2">
+      <div><div class="hint"><b>Space:</b> fields along the normal (x = 0) at the current instant t. Thin faint lines show the peak envelope.</div><canvas id="space"></canvas></div>
+      <div><div class="hint"><b>Time:</b> fields at the probe point over two periods. The black line marks the current t.</div><canvas id="time"></canvas></div>
+    </div>
+    <p class="hint" style="margin:6px 0 0">Tangential components (E<sub>x</sub>, H<sub>y</sub>) are continuous across z = 0. The normal component E<sub>z</sub> jumps, because ε<sub>1</sub>E<sub>z1</sub> = ε<sub>2</sub>E<sub>z2</sub>. In medium 1 the incident and reflected waves interfere, giving a partial standing wave (the envelope ripples). Under TIR the field in medium 2 decays exponentially.</p>
+  </div>
+
+  <!-- DERIVED -->
+  <div class="card">
+    <h2><span class="num">4</span>Derived quantities (from your inputs)</h2>
+    <div class="tiles" id="tiles"></div>
+    <div class="grid2" style="margin-top:12px">
+      <div>
+        <h3>Brewster angle</h3><div id="brew"></div>
+        <h3>Total internal reflection (TIR)</h3><div id="tir"></div>
+      </div>
+      <div>
+        <div class="tabs"><button data-t="amp" class="on">Γ∥ and τ∥</button><button data-t="pow">Power R, T</button><button data-t="ph">Phase</button></div>
+        <canvas id="coef"></canvas>
+        <div class="hint">Plotted against incidence angle for the current media. Purple dashed = θ<sub>B</sub>, orange dotted = θ<sub>c</sub>, black = your θ<sub>i</sub>, orange shading = TIR region.</div>
+      </div>
+    </div>
+    <div class="explain" id="explain"></div>
+  </div>
+
+  <!-- FIELD EXPRESSIONS -->
+  <div class="card">
+    <h2><span class="num">5</span>Field expressions: time and space dependence of every wave</h2>
+    <div id="exprs"></div>
+  </div>
+
+  <!-- FORMULAS -->
+  <div class="card">
+    <h2><span class="num">6</span>Formulas used</h2>
+    <div id="formulas"></div>
+  </div>
+</main>
+</div>
+
+<script>
+"use strict";
+/* ============================ CONSTANTS & HELPERS ============================ */
+const c0=299792458, mu0=4e-7*Math.PI, eps0=1/(mu0*c0*c0), eta0=Math.sqrt(mu0/eps0);
+const D2R=Math.PI/180, R2D=180/Math.PI;
+const COL={E:'#dc2626',H:'#2563eb',K:'#16a34a',pur:'#7c3aed',org:'#ea580c',ink:'#1b2230',mut:'#5d6677'};
+const cdiv=(a,b)=>{const d=b.re*b.re+b.im*b.im;return{re:(a.re*b.re+a.im*b.im)/d,im:(a.im*b.re-a.re*b.im)/d}};
+const cabs=a=>Math.hypot(a.re,a.im), cargd=a=>Math.atan2(a.im,a.re)*R2D;
+const $=id=>document.getElementById(id);
+function fmt(v,p=4){if(v===null||v===undefined||!isFinite(v))return'—';if(v===0)return'0';const a=Math.abs(v);
+  if(a>=1e5||a<1e-3)return v.toExponential(p-2).replace('e+','×10^').replace('e-','×10^-');return String(Number(v.toPrecision(p)));}
+function fmtLen(m){const a=Math.abs(m);if(a>=1)return fmt(m)+' m';if(a>=1e-2)return fmt(m*100)+' cm';if(a>=1e-3)return fmt(m*1e3)+' mm';return fmt(m*1e6)+' µm';}
+function fmtTime(s){const a=Math.abs(s);if(a>=1e-6)return fmt(s*1e6)+' µs';if(a>=1e-9)return fmt(s*1e9)+' ns';return fmt(s*1e12)+' ps';}
+function fmtC(z){if(Math.abs(z.im)<1e-10*Math.max(1,Math.abs(z.re)))return fmt(z.re);return fmt(cabs(z))+' ∠ '+fmt(cargd(z),4)+'°';}
+function lenUnit(m){if(m>=1)return{f:1,u:'m'};if(m>=1e-2)return{f:1e-2,u:'cm'};if(m>=1e-3)return{f:1e-3,u:'mm'};return{f:1e-6,u:'µm'};}
+
+/* ============================ STATE ============================ */
+const S={er1:1,mr1:1,er2:2.25,mr2:1,E0:1,f:1e9,th:30,playing:true,speed:1,wt:0,zoom:1,
+  show:{inc:true,ref:true,trans:true},bg:true,hmode:'dots',probe:-0.4,tab:'amp'};
+let M=null,P=null,V=null;            // media, full solution, view
+const ALL={inc:true,ref:true,trans:true};
+
+/* ============================ PHYSICS ============================ */
+function media(){
+  const n1=Math.sqrt(S.er1*S.mr1), n2=Math.sqrt(S.er2*S.mr2);
+  const eta1=eta0*Math.sqrt(S.mr1/S.er1), eta2=eta0*Math.sqrt(S.mr2/S.er2);
+  const w=2*Math.PI*S.f, b1=w/c0*n1, b2=w/c0*n2;
+  const same=Math.abs(n1-n2)<1e-9&&Math.abs(eta1-eta2)<1e-9;
+  // Brewster (horizontal pol.): eta1 cos(thi) = eta2 cos(tht)
+  let thB=null;const k=(n1/n2)**2,num=eta1*eta1-eta2*eta2,den=eta1*eta1-eta2*eta2*k;
+  if(!same&&Math.abs(den)>1e-9){const s2=num/den;if(s2>-1e-12&&s2<1+1e-12&&k*s2<=1+1e-12)thB=Math.asin(Math.sqrt(Math.min(1,Math.max(0,s2))))*R2D;}
+  const thC=n1>n2+1e-12?Math.asin(n2/n1)*R2D:null;
+  return{n1,n2,eta1,eta2,w,b1,b2,lam1:2*Math.PI/b1,lam2:2*Math.PI/b2,thB,thC,same};
+}
+function solve(thDeg,m){
+  const th=thDeg*D2R,si=Math.sin(th),ci=Math.cos(th),st=m.n1/m.n2*si;
+  let ct,tir=false,a=0;
+  if(st<=1)ct={re:Math.sqrt(1-st*st),im:0};
+  else{tir=true;a=Math.sqrt(st*st-1);ct={re:0,im:-a};}   // -j sqrt(..) -> decaying field for z>0
+  const den={re:m.eta1*ci+m.eta2*ct.re,im:m.eta2*ct.im};
+  const G=cdiv({re:m.eta1*ci-m.eta2*ct.re,im:-m.eta2*ct.im},den);   // Γ∥ (notes' convention)
+  const T=cdiv({re:2*m.eta2*ci,im:0},den);                           // τ∥
+  const R=G.re*G.re+G.im*G.im;
+  const Tp=tir?0:(ci>1e-12?(T.re*T.re+T.im*T.im)*(m.eta1/m.eta2)*ct.re/ci:0);
+  const alpha=m.b2*a;
+  return{th:thDeg,si,ci,st,ct,tir,a,G,T,R,Tp,thT:tir?null:Math.asin(Math.min(1,st))*R2D,alpha,delta:tir&&a>0?1/alpha:null};
+}
+// complex phasor fields at (x,z): out=[ExRe,ExIm,EzRe,EzIm,HyRe,HyIm]
+function fieldAt(x,z,w,out){
+  let a=0,b=0,c=0,d=0,e=0,f=0;const H0=P.H0,E0=P.E0;
+  if(z<0){
+    if(w.inc){const ph=-P.b1*(x*P.si+z*P.ci),cs=Math.cos(ph),sn=Math.sin(ph);
+      e+=H0*cs;f+=H0*sn;a+=E0*P.ci*cs;b+=E0*P.ci*sn;c-=E0*P.si*cs;d-=E0*P.si*sn;}
+    if(w.ref){const ph=-P.b1*(x*P.si-z*P.ci),cs=Math.cos(ph),sn=Math.sin(ph);
+      const pr=P.G.re*cs-P.G.im*sn,pi=P.G.re*sn+P.G.im*cs;
+      e+=H0*pr;f+=H0*pi;a-=E0*P.ci*pr;b-=E0*P.ci*pi;c-=E0*P.si*pr;d-=E0*P.si*pi;}
+  }else if(w.trans){
+    const amp=Math.exp(P.b2*z*P.ct.im),ph=-P.b2*(x*P.st+z*P.ct.re);
+    const cs=amp*Math.cos(ph),sn=amp*Math.sin(ph);
+    const pr=P.T.re*cs-P.T.im*sn,pi=P.T.re*sn+P.T.im*cs,hr=P.eta1/P.eta2;
+    e+=H0*hr*pr;f+=H0*hr*pi;
+    a+=E0*(P.ct.re*pr-P.ct.im*pi);b+=E0*(P.ct.re*pi+P.ct.im*pr);
+    c-=E0*P.st*pr;d-=E0*P.st*pi;
+  }
+  out[0]=a;out[1]=b;out[2]=c;out[3]=d;out[4]=e;out[5]=f;return out;
+}
+const buf=new Float64Array(6);
+const instv=(re,im,wt)=>re*Math.cos(wt)-im*Math.sin(wt);   // Re{phasor·e^{jωt}}
+
+/* ============================ INPUT UI ============================ */
+function makeRow(host,key,lab,sub,min,max,step,nmax){
+  const d=document.createElement('div');d.className='row';
+  d.innerHTML=`<label>${lab}<small>${sub}</small></label><input type="range" min="${min}" max="${max}" step="${step}"><input type="number" min="${min}" max="${nmax}" step="${step}">`;
+  host.appendChild(d);const [r,n]=d.querySelectorAll('input');
+  r.addEventListener('input',()=>{S[key]=+r.value;n.value=r.value;onChange();});
+  n.addEventListener('change',()=>{let v=+n.value;if(!(v>=min))v=min;if(v>nmax)v=nmax;S[key]=v;n.value=v;r.value=Math.min(v,max);onChange();});
+  ctrls[key]={r,n};
+}
+const ctrls={};
+makeRow($('m1'),'er1','ε<sub>r1</sub>','permittivity',1,20,0.01,200);
+makeRow($('m1'),'mr1','μ<sub>r1</sub>','permeability',1,10,0.01,100);
+makeRow($('m2'),'er2','ε<sub>r2</sub>','permittivity',1,20,0.01,200);
+makeRow($('m2'),'mr2','μ<sub>r2</sub>','permeability',1,10,0.01,100);
+makeRow($('angrow'),'th','θ<sub>i</sub>','degrees',0,89.9,0.1,89.9);
+function syncInputs(){for(const k in ctrls){ctrls[k].r.value=Math.min(S[k],+ctrls[k].r.max);ctrls[k].n.value=+S[k].toFixed(3);}
+  $('E0').value=+S.E0.toPrecision(5);$('fGHz').value=+(S.f/1e9).toPrecision(6);}
+$('E0').addEventListener('change',e=>{const v=+e.target.value;if(v>0){S.E0=v;}onChange();});
+$('H0').addEventListener('change',e=>{const v=+e.target.value;if(v>0){S.E0=v*M.eta1;}onChange();});
+$('fGHz').addEventListener('change',e=>{const v=+e.target.value;if(v>0)S.f=v*1e9;onChange();});
+$('preset').addEventListener('change',e=>{if(!e.target.value)return;const[a,b,c,d]=e.target.value.split(',').map(Number);
+  Object.assign(S,{er1:a,mr1:b,er2:c,mr2:d});onChange();});
+$('swap').onclick=()=>{[S.er1,S.er2]=[S.er2,S.er1];[S.mr1,S.mr2]=[S.mr2,S.mr1];onChange();};
+$('goN').onclick=()=>{S.th=0;onChange();};
+$('goB').onclick=()=>{if(M.thB!==null){S.th=Math.round(M.thB*100)/100;onChange();}};
+$('goC').onclick=()=>{if(M.thC!==null){S.th=Math.min(89.9,Math.round(M.thC*100)/100+0.0);onChange();}};
+$('play').onclick=togglePlay;
+function togglePlay(){S.playing=!S.playing;$('play').textContent=S.playing?'⏸ Pause':'▶ Play';}
+$('stepB').onclick=()=>{S.wt=(S.wt-15*D2R+2*Math.PI)%(2*Math.PI);};
+$('stepF').onclick=()=>{S.wt=(S.wt+15*D2R)%(2*Math.PI);};
+$('tslider').addEventListener('input',e=>{S.wt=+e.target.value*D2R;if(S.playing)togglePlay();});
+$('speed').addEventListener('input',e=>S.speed=+e.target.value);
+$('zoom').addEventListener('input',e=>{S.zoom=+e.target.value;buildView();});
+$('shInc').onchange=e=>S.show.inc=e.target.checked;
+$('shRef').onchange=e=>S.show.ref=e.target.checked;
+$('shTr').onchange=e=>S.show.trans=e.target.checked;
+$('shBg').onchange=e=>S.bg=e.target.checked;
+$('hmode').onchange=e=>S.hmode=e.target.value;
+$('probe').addEventListener('input',e=>{S.probe=+e.target.value;});
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));drawCoef();});
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();togglePlay();}});
+
+/* ============================ RECOMPUTE ============================ */
+function onChange(){
+  M=media();P=Object.assign({},M,solve(S.th,M),{E0:S.E0,H0:S.E0/M.eta1});
+  syncInputs();$('H0').value=+P.H0.toPrecision(5);
+  $('m1info').innerHTML=`n<sub>1</sub> = ${fmt(M.n1)}, η<sub>1</sub> = ${fmt(M.eta1)} Ω`;
+  $('m2info').innerHTML=`n<sub>2</sub> = ${fmt(M.n2)}, η<sub>2</sub> = ${fmt(M.eta2)} Ω`;
+  $('goB').disabled=M.thB===null;$('goC').disabled=M.thC===null;
+  buildView();drawCoef();renderDerived();renderExprs();
+}
+
+/* ============================ CANVAS UTIL ============================ */
+function fit(cv,h){const dpr=window.devicePixelRatio||1;cv.style.height=h+'px';const w=cv.clientWidth;
+  if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);}
+  const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);return{ctx,w,h};}
+function arrow(ctx,x1,y1,x2,y2,col,lw=1.6,hd=6){const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy);if(L<0.8)return;
+  ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=lw;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const h=Math.min(hd,L*0.45),ux=dx/L,uy=dy/L;ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-h*ux+h*0.5*uy,y2-h*uy-h*0.5*ux);ctx.lineTo(x2-h*ux-h*0.5*uy,y2-h*uy+h*0.5*ux);ctx.closePath();ctx.fill();}
+function label(ctx,t,x,y,col='#1b2230',align='left',font='12px "Segoe UI",system-ui',bg=true){
+  ctx.font=font;ctx.textAlign=align;ctx.textBaseline='middle';
+  if(bg){const w=ctx.measureText(t).width,x0=align==='center'?x-w/2:align==='right'?x-w:x;ctx.fillStyle='rgba(255,255,255,0.85)';ctx.fillRect(x0-3,y-9,w+6,18);}
+  ctx.fillStyle=col;ctx.fillText(t,x,y);}
+
+/* ============================ VIEW + BACKGROUND ============================ */
+function buildView(){
+  const cv=$('main'),w=cv.clientWidth||900,h=Math.max(360,Math.min(560,Math.round(w*0.5)));
+  const lmax=Math.max(M.lam1,M.lam2),lmin=Math.min(M.lam1,M.lam2);
+  const Wm=Math.min(3*lmax,11*lmin)/S.zoom;          // half-width in metres
+  const sc=(w/2)/Wm, Hm=(h/2)/sc;
+  const step=3,gw=Math.ceil(w/step),gh=Math.ceil(h/step),N=gw*gh;
+  const re=new Float32Array(N),im=new Float32Array(N);let mx=1e-30;
+  for(let j=0;j<gh;j++){const x=(h/2-(j+0.5)*step)/sc;for(let i=0;i<gw;i++){const z=((i+0.5)*step-w/2)/sc;
+    fieldAt(x,z,ALL,buf);const k=j*gw+i;re[k]=buf[4];im[k]=buf[5];const m=Math.hypot(buf[4],buf[5]);if(m>mx)mx=m;}}
+  const off=document.createElement('canvas');off.width=gw;off.height=gh;
+  V={w,h,Wm,Hm,sc,gw,gh,re,im,mx,off,octx:off.getContext('2d'),img:off.getContext('2d').createImageData(gw,gh)};
+  // amplitude scales common to all three waves
+  const Et=cabs(P.T)*P.E0*Math.sqrt(P.ct.re*P.ct.re+P.ct.im*P.ct.im+P.st*P.st);
+  V.Emax=Math.max(P.E0,cabs(P.G)*P.E0,Et);V.Hmax=Math.max(P.H0,cabs(P.G)*P.H0,cabs(P.T)*P.H0*M.eta1/M.eta2);
+}
+const X=z=>V.w/2+z*V.sc, Y=x=>V.h/2-x*V.sc;
+
+/* ============================ MAIN ANIMATION ============================ */
+function drawMain(){
+  const {ctx,w,h}=fit($('main'),V.h);ctx.clearRect(0,0,w,h);
+  // media tint
+  ctx.fillStyle='#f7f9fc';ctx.fillRect(0,0,w/2,h);ctx.fillStyle='#fbf8f2';ctx.fillRect(w/2,0,w/2,h);
+  // background total-Hy pattern (grey)
+  if(S.bg){const d=V.img.data,c=Math.cos(S.wt),s=Math.sin(S.wt),inv=1/V.mx;
+    for(let k=0,p=0;k<V.re.length;k++,p+=4){const v=(V.re[k]*c-V.im[k]*s)*inv;const g=222+30*v;
+      const left=(k%V.gw)<V.gw/2;d[p]=left?g-4:g+2;d[p+1]=g-1;d[p+2]=left?g+3:g-6;d[p+3]=255;}
+    V.octx.putImageData(V.img,0,0);ctx.imageSmoothingEnabled=true;ctx.drawImage(V.off,0,0,V.gw*3,V.gh*3);}
+  // axes: boundary & normal
+  ctx.setLineDash([]);ctx.strokeStyle='#334155';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(w/2,0);ctx.lineTo(w/2,h);ctx.stroke();
+  ctx.setLineDash([6,5]);ctx.lineWidth=1;ctx.strokeStyle='#64748b';ctx.beginPath();ctx.moveTo(0,h/2);ctx.lineTo(w,h/2);ctx.stroke();ctx.setLineDash([]);
+  label(ctx,'boundary z = 0 (x-axis)',w/2+6,h-12,'#334155');label(ctx,'normal (z-axis)',w-8,h/2-12,'#475569','right');
+  label(ctx,`Medium 1:  εr1 = ${fmt(S.er1)}, μr1 = ${fmt(S.mr1)}, n1 = ${fmt(M.n1)}, λ1 = ${fmtLen(M.lam1)}`,10,16,'#1e3a8a','left','bold 12.5px "Segoe UI",system-ui');
+  label(ctx,`Medium 2:  εr2 = ${fmt(S.er2)}, μr2 = ${fmt(S.mr2)}, n2 = ${fmt(M.n2)}, λ2 = ${fmtLen(M.lam2)}`,w-10,16,'#7c2d12','right','bold 12.5px "Segoe UI",system-ui');
+  // directions
+  const O={x:0,z:0},ki={x:P.si,z:P.ci},kr={x:P.si,z:-P.ci};
+  const kt=P.tir?{x:1,z:0}:{x:P.st,z:P.ct.re};
+  const lenTo=(d)=>{const a=Math.abs(d.z)>1e-9?V.Wm/Math.abs(d.z):1e9,b=Math.abs(d.x)>1e-9?V.Hm/Math.abs(d.x):1e9;return 0.9*Math.min(a,b);};
+  const Li=lenTo(ki),Lr=lenTo(kr),Lt=lenTo(kt);
+  // ray lines (green, thickness ~ power)
+  const ray=(d,L,sign,pw,dash,lab)=>{const x2=X(sign*d.z*L),y2=Y(sign*d.x*L);ctx.setLineDash(dash?[7,5]:[]);
+    ctx.strokeStyle=COL.K;ctx.lineWidth=1+4*pw;ctx.beginPath();ctx.moveTo(X(0),Y(0));ctx.lineTo(x2,y2);ctx.stroke();ctx.setLineDash([]);
+    for(const f of[0.35,0.75]){const s=sign<0?-(1-f)*L:f*L,s2=s+(sign<0?1:1)*L*0.06;arrow(ctx,X(d.z*s),Y(d.x*s),X(d.z*s2),Y(d.x*s2),COL.K,2.2,10);}
+    const s=sign*L*0.97;label(ctx,lab,X(d.z*s)+(sign<0?0:0),Y(d.x*s)+(d.x*sign>0?14:-14),COL.K,'center','bold 13px "Segoe UI",system-ui');};
+  if(S.show.inc)ray(ki,Li,-1,1,false,'k̂ᵢ  incident');
+  if(S.show.ref)ray(kr,Lr,1,P.R,P.R<1e-6,P.R<1e-6?'no reflected wave':'k̂ᵣ  reflected');
+  if(S.show.trans)ray(kt,Lt,1,P.Tp,P.tir,P.tir?'evanescent (along boundary)':'k̂ₜ  transmitted');
+  // fields along rays
+  if(S.show.inc)drawSamples(ctx,'inc',O,{x:-ki.x,z:-ki.z},Li,M.lam1);
+  if(S.show.ref)drawSamples(ctx,'ref',O,kr,Lr,M.lam1);
+  if(S.show.trans)drawSamples(ctx,'trans',{x:0,z:1e-12},kt,Lt,P.tir?2*Math.PI/(M.b1*Math.max(P.si,1e-9)):M.lam2);
+  // angle arcs
+  const cx=X(0),cy=Y(0),r=48;ctx.lineWidth=1.3;ctx.strokeStyle='#111827';
+  if(S.show.inc&&P.th>0.2){ctx.beginPath();ctx.arc(cx,cy,r,Math.PI-P.th*D2R,Math.PI);ctx.stroke();label(ctx,`θi = ${fmt(P.th,3)}°`,cx-r-8,cy+18,'#111827','right');}
+  if(S.show.ref&&P.th>0.2){ctx.beginPath();ctx.arc(cx,cy,r+10,Math.PI,Math.PI+P.th*D2R);ctx.stroke();label(ctx,`θr = ${fmt(P.th,3)}°`,cx-r-14,cy-20,'#111827','right');}
+  if(S.show.trans&&!P.tir&&P.thT>0.2){ctx.beginPath();ctx.arc(cx,cy,r,-P.thT*D2R,0);ctx.stroke();label(ctx,`θt = ${fmt(P.thT,3)}°`,cx+r+8,cy-18,'#111827','left');}
+  // TIR decay indicator
+  if(P.tir&&S.show.trans&&P.delta){const L=P.delta*V.sc,yy=h-40;if(L>4){arrow(ctx,cx,yy,cx+Math.min(L,w/2-20),yy,'#9a3412',1.4,6);
+    label(ctx,`δ = 1/α = ${fmtLen(P.delta)} (field falls to 1/e)`,cx+8,yy-14,'#9a3412');}}
+  // status banner
+  let ban=null;
+  if(M.same)ban=['Identical media: no boundary, so no reflection','#334155'];
+  else if(P.tir)ban=[`TOTAL INTERNAL REFLECTION  (θi > θc = ${fmt(M.thC,4)}°)  |Γ∥| = 1`,'#c2410c'];
+  else if(M.thB!==null&&Math.abs(P.th-M.thB)<0.15)ban=[`BREWSTER ANGLE  θB = ${fmt(M.thB,4)}°  →  Γ∥ = 0, no reflection`,'#7c3aed'];
+  else if(M.thC!==null&&Math.abs(P.th-M.thC)<0.15)ban=[`CRITICAL ANGLE  θc = ${fmt(M.thC,4)}°  →  θt = 90°`,'#c2410c'];
+  if(ban){ctx.font='bold 13px "Segoe UI",system-ui';const tw=ctx.measureText(ban[0]).width;ctx.fillStyle=ban[1];
+    ctx.fillRect(w/2-tw/2-10,30,tw+20,24);ctx.fillStyle='#fff';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(ban[0],w/2,42);}
+  // probe marker
+  const pz=S.probe*0.95*V.Wm;ctx.strokeStyle='#111827';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(X(pz),Y(0),6,0,2*Math.PI);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(X(pz)-9,Y(0));ctx.lineTo(X(pz)+9,Y(0));ctx.moveTo(X(pz),Y(0)-9);ctx.lineTo(X(pz),Y(0)+9);ctx.stroke();
+  label(ctx,'probe',X(pz),Y(0)+18,'#111827','center','11px system-ui');
+  // axis triad
+  const ax=62,ay=h-38;arrow(ctx,ax,ay,ax+34,ay,'#111827',1.4,6);arrow(ctx,ax,ay,ax,ay-34,'#111827',1.4,6);
+  label(ctx,'z',ax+42,ay,'#111827','left','12px system-ui',false);label(ctx,'x',ax,ay-44,'#111827','center','12px system-ui',false);
+  ctx.beginPath();ctx.arc(ax,ay,5,0,2*Math.PI);ctx.stroke();ctx.beginPath();ctx.arc(ax,ay,1.6,0,2*Math.PI);ctx.fill();
+  label(ctx,'y (out)',ax-8,ay+14,'#111827','right','11px system-ui',false);
+}
+function drawSamples(ctx,wave,start,dir,len,lam){
+  let ds=lam/8;if(ds*V.sc<10)ds=10/V.sc;const n=Math.floor(len/ds);
+  const fl={inc:wave==='inc',ref:wave==='ref',trans:wave==='trans'};
+  const sE=32/V.Emax,sH=8/V.Hmax,sH3=30/V.Hmax,tips=[],tipsH=[],pts=[];
+  for(let k=0;k<n;k++){const s=(k+0.5)*ds,x=start.x+dir.x*s,z=start.z+dir.z*s;fieldAt(x,z,fl,buf);
+    const Ex=instv(buf[0],buf[1],S.wt),Ez=instv(buf[2],buf[3],S.wt),Hy=instv(buf[4],buf[5],S.wt);
+    pts.push([X(z),Y(x),Ex,Ez,Hy]);}
+  // E
+  ctx.globalAlpha=1;
+  for(const[px,py,Ex,Ez]of pts){const ex=px+Ez*sE,ey=py-Ex*sE;arrow(ctx,px,py,ex,ey,COL.E,1.5,5);tips.push([ex,ey]);}
+  if(tips.length>1){ctx.strokeStyle='rgba(220,38,38,0.55)';ctx.lineWidth=1;ctx.beginPath();tips.forEach((t,i)=>i?ctx.lineTo(t[0],t[1]):ctx.moveTo(t[0],t[1]));ctx.stroke();}
+  // H
+  for(const[px,py,,,Hy]of pts){
+    if(S.hmode==='dots'){const r=Math.abs(Hy)*sH;if(r<0.8)continue;ctx.strokeStyle=COL.H;ctx.fillStyle=COL.H;ctx.lineWidth=1.4;
+      ctx.beginPath();ctx.arc(px,py,r,0,2*Math.PI);ctx.stroke();
+      if(Hy>0){ctx.beginPath();ctx.arc(px,py,Math.max(1,r*0.3),0,2*Math.PI);ctx.fill();}
+      else{const q=r*0.7;ctx.beginPath();ctx.moveTo(px-q,py-q);ctx.lineTo(px+q,py+q);ctx.moveTo(px+q,py-q);ctx.lineTo(px-q,py+q);ctx.stroke();}}
+    else{const hx=px-0.62*Hy*sH3,hy=py+0.48*Hy*sH3;arrow(ctx,px,py,hx,hy,COL.H,1.4,5);tipsH.push([hx,hy]);}
+  }
+  if(tipsH.length>1){ctx.strokeStyle='rgba(37,99,235,0.55)';ctx.lineWidth=1;ctx.beginPath();tipsH.forEach((t,i)=>i?ctx.lineTo(t[0],t[1]):ctx.moveTo(t[0],t[1]));ctx.stroke();}
+}
+
+/* ============================ 3-D WAVE TRAINS ============================ */
+function drawTrains(){
+  const cv=$('trains'),{ctx,w,h}=fit(cv,250);ctx.clearRect(0,0,w,h);
+  const pw=w/3;
+  const waves=[
+    {k:'inc',t:'Incident wave (medium 1)',d:{x:P.si,z:P.ci},lam:M.lam1,r0:-1,amp:`E = ${fmt(P.E0)} V/m,  H = ${fmt(P.H0)} A/m`},
+    {k:'ref',t:'Reflected wave (medium 1)',d:{x:P.si,z:-P.ci},lam:M.lam1,r0:0,amp:`|E| = |Γ∥|·Ei0 = ${fmt(cabs(P.G)*P.E0)} V/m,  |H| = ${fmt(cabs(P.G)*P.H0)} A/m`},
+    {k:'trans',t:P.tir?'Transmitted: EVANESCENT (at z = 0⁺)':'Transmitted wave (medium 2)',d:P.tir?{x:1,z:0}:{x:P.st,z:P.ct.re},
+      lam:P.tir?2*Math.PI/(M.b1*Math.max(P.si,1e-9)):M.lam2,r0:0,amp:`|E| = ${fmt(cabs(P.T)*P.E0*Math.hypot(cabs(P.ct),P.st))} V/m,  |H| = ${fmt(cabs(P.T)*P.H0*M.eta1/M.eta2)} A/m`}];
+  waves.forEach((wv,i)=>{
+    const x0=i*pw;ctx.save();ctx.beginPath();ctx.rect(x0,0,pw,h);ctx.clip();
+    ctx.fillStyle=i<2?'#f7f9fc':'#fbf8f2';ctx.fillRect(x0+4,0,pw-8,h);
+    label(ctx,wv.t,x0+12,14,'#111827','left','bold 13px "Segoe UI",system-ui',false);
+    label(ctx,wv.amp,x0+12,32,COL.mut,'left','11.5px "Segoe UI",system-ui',false);
+    const ax0=x0+26,ax1=x0+pw-26,ay=h/2+18,Lpx=ax1-ax0;
+    arrow(ctx,ax0,ay,ax1+8,ay,COL.K,2,9);label(ctx,'k̂',ax1+2,ay+14,COL.K,'center','bold 13px system-ui',false);
+    // faint axes for p̂ (in-plane ⟂) and ŷ
+    ctx.strokeStyle='#cbd5e1';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(ax0,ay-80);ctx.lineTo(ax0,ay+80);ctx.moveTo(ax0+30,ay-23);ctx.lineTo(ax0-30,ay+23);ctx.stroke();
+    label(ctx,'in-plane ⟂',ax0+4,ay-82,'#94a3b8','left','10.5px system-ui',false);label(ctx,'ŷ',ax0-34,ay+28,'#94a3b8','center','11px system-ui',false);
+    const on=S.show[wv.k];
+    if(!on){label(ctx,'(hidden)',x0+pw/2,ay-40,COL.mut,'center');ctx.restore();return;}
+    const fl={inc:wv.k==='inc',ref:wv.k==='ref',trans:wv.k==='trans'};
+    const span=2*wv.lam,N=48,sE=62/V.Emax,sH=58/V.Hmax,d=wv.d,p={x:d.z,z:-d.x};
+    const tE=[],tH=[];
+    for(let k=0;k<=N;k++){const s=k/N*span,ss=wv.r0<0?s-span-1e-12:s+1e-12;
+      const x=d.x*ss,z=wv.k==='trans'&&P.tir?1e-12:d.z*ss;fieldAt(x,z,fl,buf);
+      const Ex=instv(buf[0],buf[1],S.wt),Ez=instv(buf[2],buf[3],S.wt),Hy=instv(buf[4],buf[5],S.wt);
+      const lon=Ex*d.x+Ez*d.z,tr=Ex*p.x+Ez*p.z,px=ax0+k/N*Lpx;
+      const ex=px+lon*sE,ey=ay-tr*sE,hx=px-0.6*Hy*sH,hy=ay+0.45*Hy*sH;
+      if(k%2===0){arrow(ctx,px,ay,ex,ey,COL.E,1.3,4);arrow(ctx,px,ay,hx,hy,COL.H,1.3,4);}
+      tE.push([ex,ey]);tH.push([hx,hy]);}
+    ctx.lineWidth=2;ctx.strokeStyle=COL.E;ctx.beginPath();tE.forEach((t,j)=>j?ctx.lineTo(t[0],t[1]):ctx.moveTo(t[0],t[1]));ctx.stroke();
+    ctx.strokeStyle=COL.H;ctx.beginPath();tH.forEach((t,j)=>j?ctx.lineTo(t[0],t[1]):ctx.moveTo(t[0],t[1]));ctx.stroke();
+    const bot=wv.k==='trans'&&P.tir?'travels along +x; decays into medium 2; E has a component along k̂':
+      wv.k==='ref'&&P.R<1e-6?'Γ∥ = 0: no reflected wave at the Brewster angle':(wv.r0<0?'span: 2λ₁ ending at the boundary point':'span: 2λ starting at the boundary point');
+    label(ctx,bot,x0+12,h-12,COL.mut,'left','11px "Segoe UI",system-ui',false);
+    ctx.restore();
+    if(i>0){ctx.strokeStyle='#e2e8f0';ctx.beginPath();ctx.moveTo(x0,6);ctx.lineTo(x0,h-6);ctx.stroke();}
+  });
+}
+
+/* ============================ GENERIC PLOT ============================ */
+function ticks(a,b,n){const sp=b-a;if(!(sp>0))return[a];const raw=sp/n,mag=10**Math.floor(Math.log10(raw)),f=raw/mag;
+  const st=(f<1.5?1:f<3?2:f<7?5:10)*mag,o=[];for(let t=Math.ceil(a/st-1e-9)*st;t<=b+sp*1e-9;t+=st)o.push(Math.abs(t)<st*1e-9?0:t);return o;}
+const tk=v=>String(Number(v.toPrecision(3)));
+function plot(cv,h,o){
+  const{ctx,w}=fit(cv,h);ctx.clearRect(0,0,w,h);
+  const L=54,R=o.y2?54:14,T=14,B=38,pw=w-L-R,ph=h-T-B;
+  const Xp=v=>L+(v-o.x0)/(o.x1-o.x0)*pw;
+  const Yp=(v,ax)=>{const r=ax===2?o.y2:o.y;return T+(1-(v-r[0])/(r[1]-r[0]))*ph;};
+  (o.regions||[]).forEach(r=>{ctx.fillStyle=r.c;const a=Math.max(L,Xp(r.a)),b=Math.min(L+pw,Xp(r.b));if(b>a)ctx.fillRect(a,T,b-a,ph);
+    if(r.l)label(ctx,r.l,(a+b)/2,T+10,r.lc||COL.mut,'center','11px system-ui',false);});
+  ctx.font='11px system-ui';ctx.lineWidth=1;
+  ticks(o.x0,o.x1,7).forEach(t=>{const x=Xp(t);ctx.strokeStyle='#eef0f4';ctx.beginPath();ctx.moveTo(x,T);ctx.lineTo(x,T+ph);ctx.stroke();
+    ctx.fillStyle=COL.mut;ctx.textAlign='center';ctx.textBaseline='top';ctx.fillText(o.xf?o.xf(t):tk(t),x,T+ph+4);});
+  ticks(o.y[0],o.y[1],5).forEach(t=>{const y=Yp(t,1);ctx.strokeStyle='#eef0f4';ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(L+pw,y);ctx.stroke();
+    ctx.fillStyle=o.yc||COL.mut;ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillText(tk(t),L-5,y);});
+  if(o.y2)ticks(o.y2[0],o.y2[1],5).forEach(t=>{ctx.fillStyle=o.y2c||COL.mut;ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText(tk(t),L+pw+5,Yp(t,2));});
+  if(o.y[0]<0&&o.y[1]>0){ctx.strokeStyle='#94a3b8';ctx.beginPath();ctx.moveTo(L,Yp(0,1));ctx.lineTo(L+pw,Yp(0,1));ctx.stroke();}
+  ctx.strokeStyle='#64748b';ctx.strokeRect(L,T,pw,ph);
+  ctx.save();ctx.beginPath();ctx.rect(L,T,pw,ph);ctx.clip();
+  (o.series||[]).forEach(s=>{ctx.strokeStyle=s.c;ctx.lineWidth=s.w||2;ctx.globalAlpha=s.a||1;ctx.setLineDash(s.d||[]);ctx.beginPath();let pen=false;
+    for(let i=0;i<s.x.length;i++){const y=s.y[i];if(!isFinite(y)){pen=false;continue;}const X_=Xp(s.x[i]),Y_=Yp(y,s.ax||1);pen?ctx.lineTo(X_,Y_):ctx.moveTo(X_,Y_);pen=true;}
+    ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;});
+  (o.vl||[]).forEach(v=>{if(v.x<o.x0||v.x>o.x1)return;const x=Xp(v.x);ctx.strokeStyle=v.c;ctx.lineWidth=v.w||1.5;ctx.setLineDash(v.d||[]);
+    ctx.beginPath();ctx.moveTo(x,T);ctx.lineTo(x,T+ph);ctx.stroke();ctx.setLineDash([]);if(v.l)label(ctx,v.l,x+4,T+ph-12-(v.o||0),v.c,'left','11px system-ui');});
+  ctx.restore();
+  // legend
+  let lx=L+8,ly=T+12;(o.series||[]).filter(s=>s.l).forEach(s=>{ctx.font='11.5px system-ui';const tw=ctx.measureText(s.l).width;
+    if(lx+tw+34>L+pw){lx=L+8;ly+=16;}ctx.fillStyle='rgba(255,255,255,.85)';ctx.fillRect(lx-2,ly-7,tw+30,14);
+    ctx.strokeStyle=s.c;ctx.lineWidth=2;ctx.setLineDash(s.d||[]);ctx.beginPath();ctx.moveTo(lx,ly);ctx.lineTo(lx+20,ly);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=COL.ink;ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText(s.l,lx+24,ly);lx+=tw+40;});
+  ctx.fillStyle=COL.ink;ctx.font='12px system-ui';ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillText(o.xl||'',L+pw/2,h-2);
+  ctx.save();ctx.translate(13,T+ph/2);ctx.rotate(-Math.PI/2);ctx.fillStyle=o.yc||COL.ink;ctx.textBaseline='middle';ctx.fillText(o.yl||'',0,0);ctx.restore();
+  if(o.y2){ctx.save();ctx.translate(w-10,T+ph/2);ctx.rotate(Math.PI/2);ctx.fillStyle=o.y2c||COL.ink;ctx.textBaseline='middle';ctx.textAlign='center';ctx.fillText(o.y2l||'',0,0);ctx.restore();}
+}
+
+/* ============================ SPACE / TIME PLOTS ============================ */
+function drawSpace(){
+  const N=500,zs=[],ex=[],ez=[],hy=[],eE=[],eH=[],nE=[],nH=[];let mE=1e-30,mH=1e-30;
+  for(let i=0;i<=N;i++){const z=-V.Wm+2*V.Wm*i/N;fieldAt(0,z,ALL,buf);zs.push(z);
+    ex.push(instv(buf[0],buf[1],S.wt));ez.push(instv(buf[2],buf[3],S.wt));hy.push(instv(buf[4],buf[5],S.wt));
+    const a=Math.hypot(buf[0],buf[1]),b=Math.hypot(buf[4],buf[5]),c=Math.hypot(buf[2],buf[3]);eE.push(a);nE.push(-a);eH.push(b);nH.push(-b);
+    mE=Math.max(mE,a,c);mH=Math.max(mH,b);}
+  const u=lenUnit(V.Wm),pz=S.probe*0.95*V.Wm;
+  plot($('space'),260,{x0:-V.Wm,x1:V.Wm,y:[-1.15*mE,1.15*mE],y2:[-1.15*mH,1.15*mH],xf:t=>tk(t/u.f),xl:`z (${u.u})   ← medium 1 | medium 2 →`,
+    yl:'E (V/m)',yc:COL.E,y2l:'H (A/m)',y2c:COL.H,
+    regions:[{a:0,b:V.Wm,c:'rgba(234,179,8,0.08)',l:'medium 2'},{a:-V.Wm,b:0,c:'rgba(59,130,246,0.04)',l:'medium 1'}],
+    series:[{x:zs,y:eE,c:COL.E,w:1,a:.3},{x:zs,y:nE,c:COL.E,w:1,a:.3},{x:zs,y:eH,c:COL.H,w:1,a:.3,ax:2},{x:zs,y:nH,c:COL.H,w:1,a:.3,ax:2},
+      {x:zs,y:ex,c:COL.E,l:'Eₓ (tangential)'},{x:zs,y:ez,c:COL.E,d:[5,4],w:1.6,l:'E_z (normal)'},{x:zs,y:hy,c:COL.H,ax:2,l:'H_y'}],
+    vl:[{x:0,c:'#334155',w:2},{x:pz,c:'#111827',d:[3,3],l:'probe'}]});
+  // time plot at probe
+  const Tper=1/S.f,M2=400,ts=[],tx=[],tz=[],th=[];fieldAt(0,pz,ALL,buf);
+  for(let i=0;i<=M2;i++){const t=2*Tper*i/M2,wt=2*Math.PI*S.f*t;ts.push(t);tx.push(instv(buf[0],buf[1],wt));tz.push(instv(buf[2],buf[3],wt));th.push(instv(buf[4],buf[5],wt));}
+  const tu=Tper>=1e-6?{f:1e-6,u:'µs'}:Tper>=1e-9?{f:1e-9,u:'ns'}:{f:1e-12,u:'ps'};const tcur=S.wt/(2*Math.PI)*Tper;
+  plot($('time'),260,{x0:0,x1:2*Tper,y:[-1.15*mE,1.15*mE],y2:[-1.15*mH,1.15*mH],xf:t=>tk(t/tu.f),xl:`t (${tu.u})   period T = ${fmtTime(Tper)}`,
+    yl:'E (V/m)',yc:COL.E,y2l:'H (A/m)',y2c:COL.H,
+    series:[{x:ts,y:tx,c:COL.E,l:'Eₓ'},{x:ts,y:tz,c:COL.E,d:[5,4],w:1.6,l:'E_z'},{x:ts,y:th,c:COL.H,ax:2,l:'H_y'}],
+    vl:[{x:tcur,c:'#111827',w:2,l:'now'},{x:tcur+Tper,c:'#94a3b8',w:1,d:[3,3]}]});
+  $('probeTxt').textContent=`z = ${fmtLen(pz)} (${pz<0?'medium 1':'medium 2'})`;
+}
+
+/* ============================ COEFFICIENT PLOT ============================ */
+function drawCoef(){
+  const th=[],gA=[],gS=[],tA=[],R=[],T=[],gP=[],tP=[];
+  for(let i=0;i<=450;i++){const t=89.9*i/450,s=solve(t,M);th.push(t);gA.push(cabs(s.G));gS.push(s.tir?NaN:s.G.re);tA.push(cabs(s.T));
+    R.push(s.R);T.push(s.Tp);gP.push(cargd(s.G));tP.push(cargd(s.T));}
+  const vl=[{x:S.th,c:'#111827',w:2,l:`θi = ${fmt(S.th,3)}°`}];
+  if(M.thB!==null)vl.push({x:M.thB,c:COL.pur,d:[6,4],l:`θB = ${fmt(M.thB,4)}°`,o:16});
+  if(M.thC!==null)vl.push({x:M.thC,c:COL.org,d:[2,3],l:`θc = ${fmt(M.thC,4)}°`,o:32});
+  const reg=M.thC!==null?[{a:M.thC,b:90,c:'rgba(234,88,12,0.10)',l:'TIR',lc:COL.org}]:[];
+  let o;
+  if(S.tab==='amp'){const mx=Math.max(1,...tA)*1.1,mn=Math.min(-1,...gS.filter(isFinite))*1.1;
+    o={y:[mn,mx],yl:'coefficient',series:[{x:th,y:gS,c:COL.pur,l:'Γ∥ (signed, real)'},{x:th,y:gA,c:COL.pur,d:[5,4],w:1.5,l:'|Γ∥|'},{x:th,y:tA,c:COL.org,l:'|τ∥|'}]};}
+  else if(S.tab==='pow')o={y:[0,1.08],yl:'fraction of incident power',series:[{x:th,y:R,c:COL.pur,l:'R = |Γ∥|²'},{x:th,y:T,c:COL.org,l:'T = 1 − R'}]};
+  else o={y:[-190,190],yl:'phase (degrees)',series:[{x:th,y:gP,c:COL.pur,l:'∠Γ∥'},{x:th,y:tP,c:COL.org,l:'∠τ∥'}]};
+  plot($('coef'),270,Object.assign(o,{x0:0,x1:90,xl:'angle of incidence θi (degrees)',regions:reg,vl}));
+}
+
+/* ============================ DERIVED PANEL ============================ */
+function tile(k,v){return`<div class="tile"><div class="k">${k}</div><div class="v">${v}</div></div>`;}
+function renderDerived(){
+  const g=P.G,t=P.T;
+  $('tiles').innerHTML=[
+    tile('n₁ = √(εr1 μr1)',fmt(M.n1)),tile('n₂ = √(εr2 μr2)',fmt(M.n2)),
+    tile('η₁ = η₀√(μr1/εr1)',fmt(M.eta1)+' Ω'),tile('η₂ = η₀√(μr2/εr2)',fmt(M.eta2)+' Ω'),
+    tile('ω = 2πf',fmt(M.w)+' rad/s'),tile('β₁ = ω√(μ₁ε₁)',fmt(M.b1)+' rad/m'),tile('β₂ = ω√(μ₂ε₂)',fmt(M.b2)+' rad/m'),
+    tile('λ₁ / λ₂',fmtLen(M.lam1)+' / '+fmtLen(M.lam2)),
+    tile('θr (= θi)',fmt(P.th,4)+'°'),
+    tile('θt (Snell)',P.tir?'complex (TIR)':fmt(P.thT,4)+'°'),
+    tile('Γ∥ reflection coeff.',fmtC(g)),tile('τ∥ transmission coeff.',fmtC(t)),
+    tile('R = |Γ∥|² (power reflected)',(100*P.R).toFixed(2)+' %'),tile('T (power transmitted)',(100*P.Tp).toFixed(2)+' %'),
+    tile('Check: R + T',fmt(P.R+P.Tp,6)),
+    tile('Check: 1 + Γ∥ = (η₁/η₂)τ∥',fmtC({re:1+g.re,im:g.im})+' = '+fmtC({re:M.eta1/M.eta2*t.re,im:M.eta1/M.eta2*t.im})),
+    tile('Eᵢ₀ / Hᵢ₀',fmt(P.E0)+' V/m / '+fmt(P.H0)+' A/m'),
+    tile('Eᵣ₀ / Hᵣ₀',fmt(cabs(g)*P.E0)+' V/m / '+fmt(cabs(g)*P.H0)+' A/m'),
+    tile('Eₜ₀ / Hₜ₀',fmt(cabs(t)*P.E0)+' V/m / '+fmt(cabs(t)*P.H0*M.eta1/M.eta2)+' A/m'),
+  ].join('');
+  // Brewster
+  let b;
+  if(M.same)b=`<div class="status info">Identical media: there is no boundary, so no reflection at any angle.</div>`;
+  else if(M.thB===null)b=`<div class="status info"><div class="big">θ<sub>B</sub> does not exist</div>For these media no real angle satisfies η₁cosθi = η₂cosθt, so Γ∥ never becomes zero. This can happen when μ₁ ≠ μ₂.</div>`;
+  else{const at=Math.abs(P.th-M.thB)<0.15;const eqmu=Math.abs(S.mr1-S.mr2)<1e-9;
+    b=`<div class="status purp"><div class="big">θ<sub>B</sub> = ${fmt(M.thB,5)}°</div>
+    At this angle η₁cosθi = η₂cosθt, so <b>Γ∥ = 0</b>: a horizontally polarized wave is transmitted completely, with no reflection.
+    ${eqmu?`<br>For μ₁ = μ₂: tan θ<sub>B</sub> = √(ε<sub>r2</sub>/ε<sub>r1</sub>) = ${fmt(Math.sqrt(S.er2/S.er1))}. The reflected and transmitted directions would be 90° apart: θ<sub>B</sub> + θ<sub>t</sub> = ${fmt(M.thB+solve(M.thB,M).thT,5)}°.`:''}
+    <br>${at?'<b>✔ You are at the Brewster angle now.</b> The reflected ray has disappeared.':'Currently θi = '+fmt(P.th,4)+'°. Press <i>Go to Brewster</i> to see the reflected wave vanish.'}
+    <br>Below θ<sub>B</sub>, Γ∥ &gt; 0 (reflected H out of the screen, ⊙). Above θ<sub>B</sub>, Γ∥ &lt; 0 (reflected H flips to ⊗, a 180° phase change).</div>`;}
+  $('brew').innerHTML=b;
+  // TIR
+  let tr;
+  if(M.n1<=M.n2+1e-12)tr=`<div class="status ok"><div class="big">No TIR possible</div>
+    The wave goes from a <b>rarer</b> medium (n₁ = ${fmt(M.n1)}) into a <b>denser</b> one (n₂ = ${fmt(M.n2)}). Snell's law gives
+    sin θt = (n₁/n₂) sin θi ≤ ${fmt(M.n1/M.n2)} &lt; 1, so a real transmitted angle always exists and a transmitted wave is always present.
+    The transmitted ray bends <b>towards</b> the normal. TIR needs n₁ &gt; n₂ (denser → rarer). Try <i>Swap media</i>.</div>`;
+  else if(P.tir)tr=`<div class="status warn"><div class="big">TIR is ACTIVE ✔</div>
+    Denser → rarer (n₁ = ${fmt(M.n1)} &gt; n₂ = ${fmt(M.n2)}), critical angle θ<sub>c</sub> = sin⁻¹(n₂/n₁) = <b>${fmt(M.thC,5)}°</b>, and θi = ${fmt(P.th,4)}° &gt; θ<sub>c</sub>.
+    <br>sin θt = ${fmt(P.st)} &gt; 1, so cos θt = −j${fmt(P.a)} is imaginary. Therefore <b>|Γ∥| = 1</b> and all power is reflected.
+    The reflected wave is phase-shifted by ∠Γ∥ = ${fmt(cargd(P.G),4)}°.
+    <br>Medium 2 still has a field, the <b>evanescent wave</b>. It travels along the boundary (x direction) and decays as e<sup>−αz</sup>,
+    with α = ${fmt(P.alpha)} Np/m and penetration depth δ = 1/α = <b>${fmtLen(P.delta)}</b>. It carries no average power into medium 2.</div>`;
+  else tr=`<div class="status info"><div class="big">TIR possible, not active</div>
+    Denser → rarer (n₁ = ${fmt(M.n1)} &gt; n₂ = ${fmt(M.n2)}): critical angle θ<sub>c</sub> = sin⁻¹(n₂/n₁) = <b>${fmt(M.thC,5)}°</b>.
+    Now θi = ${fmt(P.th,4)}° ${Math.abs(P.th-M.thC)<0.15?'≈ θc, so the transmitted wave just grazes the surface (θt = 90°).':'&lt; θc, so part of the wave is still transmitted (bending <b>away</b> from the normal).'}
+    Increase θi past θ<sub>c</sub> to see TIR.</div>`;
+  $('tir').innerHTML=tr;
+  // plain-language explanation
+  let e;
+  if(M.same)e='Both media are the same, so the wave simply continues straight through.';
+  else if(P.tir)e=`<b>What you see:</b> the incident and reflected waves have equal strength (|Γ∥| = 1), so in medium 1 they form a standing-wave pattern along z (see the grey background and the space plot). In medium 2 the field clings to the boundary and fades within a few δ. That is the evanescent wave.`;
+  else if(M.thB!==null&&Math.abs(P.th-M.thB)<0.15)e=`<b>What you see:</b> at the Brewster angle the reflected wave vanishes completely. All ${(100*P.Tp).toFixed(1)}% of the power goes into medium 2. For this reason, light reflected from glass or water at this angle is polarized perpendicular to the plane of incidence.`;
+  else e=`<b>What you see:</b> ${(100*P.R).toFixed(1)}% of the incident power is reflected and ${(100*P.Tp).toFixed(1)}% is transmitted. The transmitted wave bends ${M.n2>M.n1?'towards':'away from'} the normal (θt = ${fmt(P.thT,4)}°) because medium 2 is ${M.n2>M.n1?'denser':'rarer'}. In medium 2 the wavelength is ${M.n2>M.n1?'shorter':'longer'} (λ₂ = ${fmtLen(M.lam2)} vs λ₁ = ${fmtLen(M.lam1)}), but all three waves stay in step along the boundary (phase matching, β₁ sinθi = β₂ sinθt).`
+    +(cabs(P.T)>1?` <b>Note:</b> |τ∥| = ${fmt(cabs(P.T))} &gt; 1 does not break energy conservation. Transmitted power also depends on η and on the beam's cross-section: T = |τ∥|²(η₁/η₂)(cosθt/cosθi).`:'');
+  $('explain').innerHTML=e;
+}
+
+/* ============================ FIELD EXPRESSIONS ============================ */
+function trm(c,v){if(Math.abs(c)<1e-12)return'';return(c<0?' + ':' − ')+fmt(Math.abs(c))+v;}  // for  "ωt − c·v"
+function ang(d){if(Math.abs(d)<1e-9)return'';return(d<0?' − ':' + ')+fmt(Math.abs(d),4)+'°';}
+function renderExprs(){
+  const w=fmt(M.w),bxi=M.b1*P.si,bzi=M.b1*P.ci,g=P.G,t=P.T,gA=cabs(g),gP=cargd(g),tA=cabs(t),tP=cargd(t);
+  const argI=`${w}t${trm(bxi,' x')}${trm(bzi,' z')}`, argR=`${w}t${trm(bxi,' x')}${trm(-bzi,' z')}${ang(gP)}`;
+  let rows=`
+  <tr><th>Wave</th><th>Phasor form (from notes)</th><th>Instantaneous form (time + space)</th><th>With your numbers</th></tr>
+  <tr><td><b>Incident</b><br><span class="hint">medium 1, z &lt; 0</span></td>
+   <td class="eq"><span class="H">H</span><sub>i</sub> = H<sub>i0</sub> e<sup>−jβ₁(x sinθi + z cosθi)</sup> ŷ<br><span class="E">E</span><sub>i</sub> = η₁H<sub>i0</sub>(cosθi x̂ − sinθi ẑ) e<sup>−jβ₁(x sinθi + z cosθi)</sup></td>
+   <td class="eq"><span class="H">H</span><sub>i</sub> = H<sub>i0</sub> cos(ωt − β₁x sinθi − β₁z cosθi) ŷ<br><span class="E">E</span><sub>i</sub> = E<sub>i0</sub> cos(ωt − β₁x sinθi − β₁z cosθi)(cosθi x̂ − sinθi ẑ)</td>
+   <td class="eq"><span class="H">H</span><sub>i</sub> = ${fmt(P.H0)} cos(${argI}) ŷ A/m<br><span class="E">E</span><sub>i</sub> = ${fmt(P.E0)} cos(${argI}) (${fmt(P.ci)} x̂ − ${fmt(P.si)} ẑ) V/m</td></tr>
+  <tr><td><b>Reflected</b><br><span class="hint">medium 1, z &lt; 0</span></td>
+   <td class="eq"><span class="H">H</span><sub>r</sub> = Γ∥H<sub>i0</sub> e<sup>−jβ₁(x sinθi − z cosθi)</sup> ŷ<br><span class="E">E</span><sub>r</sub> = −Γ∥η₁H<sub>i0</sub>(cosθi x̂ + sinθi ẑ) e<sup>−jβ₁(x sinθi − z cosθi)</sup></td>
+   <td class="eq"><span class="H">H</span><sub>r</sub> = |Γ∥|H<sub>i0</sub> cos(ωt − β₁x sinθi + β₁z cosθi + ∠Γ∥) ŷ<br><span class="E">E</span><sub>r</sub> = −|Γ∥|E<sub>i0</sub> cos(ωt − β₁x sinθi + β₁z cosθi + ∠Γ∥)(cosθi x̂ + sinθi ẑ)</td>
+   <td class="eq">${gA<1e-9?'Γ∥ = 0 → no reflected wave':`<span class="H">H</span><sub>r</sub> = ${fmt(gA*P.H0)} cos(${argR}) ŷ A/m<br><span class="E">E</span><sub>r</sub> = −${fmt(gA*P.E0)} cos(${argR}) (${fmt(P.ci)} x̂ + ${fmt(P.si)} ẑ) V/m`}</td></tr>`;
+  if(!P.tir){const bxt=M.b2*P.st,bzt=M.b2*P.ct.re,argT=`${w}t${trm(bxt,' x')}${trm(bzt,' z')}${ang(tP)}`;
+    rows+=`<tr><td><b>Transmitted</b><br><span class="hint">medium 2, z &gt; 0</span></td>
+   <td class="eq"><span class="H">H</span><sub>t</sub> = (η₁/η₂)τ∥H<sub>i0</sub> e<sup>−jβ₂(x sinθt + z cosθt)</sup> ŷ<br><span class="E">E</span><sub>t</sub> = τ∥η₁H<sub>i0</sub>(cosθt x̂ − sinθt ẑ) e<sup>−jβ₂(x sinθt + z cosθt)</sup></td>
+   <td class="eq"><span class="H">H</span><sub>t</sub> = |τ∥|(η₁/η₂)H<sub>i0</sub> cos(ωt − β₂x sinθt − β₂z cosθt + ∠τ∥) ŷ<br><span class="E">E</span><sub>t</sub> = |τ∥|E<sub>i0</sub> cos(ωt − β₂x sinθt − β₂z cosθt + ∠τ∥)(cosθt x̂ − sinθt ẑ)</td>
+   <td class="eq"><span class="H">H</span><sub>t</sub> = ${fmt(tA*P.H0*M.eta1/M.eta2)} cos(${argT}) ŷ A/m<br><span class="E">E</span><sub>t</sub> = ${fmt(tA*P.E0)} cos(${argT}) (${fmt(P.ct.re)} x̂ − ${fmt(P.st)} ẑ) V/m</td></tr>`;}
+  else{const argT=`${w}t${trm(bxi,' x')}${ang(tP)}`,argT2=`${w}t${trm(bxi,' x')}${ang(tP-90)}`;
+    rows+=`<tr><td><b>Transmitted (evanescent, TIR)</b><br><span class="hint">medium 2, z &gt; 0</span></td>
+   <td class="eq">cosθt = −j√((β₁/β₂)²sin²θi − 1) = −j${fmt(P.a)}<br><span class="H">H</span><sub>t</sub> = (η₁/η₂)τ∥H<sub>i0</sub> e<sup>−αz</sup> e<sup>−jβ₁ sinθi x</sup> ŷ</td>
+   <td class="eq"><span class="H">H</span><sub>t</sub> = |τ∥|(η₁/η₂)H<sub>i0</sub> e<sup>−αz</sup> cos(ωt − β₁x sinθi + ∠τ∥) ŷ<br><span class="E">E</span><sub>t</sub> = |τ∥|E<sub>i0</sub>e<sup>−αz</sup>[ a·cos(ωt − β₁x sinθi + ∠τ∥ − 90°) x̂ − sinθt·cos(ωt − β₁x sinθi + ∠τ∥) ẑ ]</td>
+   <td class="eq">α = ${fmt(P.alpha)} Np/m, a = ${fmt(P.a)}, sinθt = ${fmt(P.st)}<br><span class="H">H</span><sub>t</sub> = ${fmt(tA*P.H0*M.eta1/M.eta2)} e<sup>−${fmt(P.alpha)}z</sup> cos(${argT}) ŷ A/m<br>
+   <span class="E">E</span><sub>t</sub> = ${fmt(tA*P.E0)} e<sup>−${fmt(P.alpha)}z</sup>[ ${fmt(P.a)} cos(${argT2}) x̂ − ${fmt(P.st)} cos(${argT}) ẑ ] V/m</td></tr>`;}
+  $('exprs').innerHTML=`<div style="overflow-x:auto"><table>${rows}</table></div>
+   <p class="hint">x, z in metres, t in seconds. Γ∥ = ${fmtC(g)}, τ∥ = ${fmtC(t)}. E<sub>i0</sub> = η₁H<sub>i0</sub>. Each wave satisfies E ⟂ H ⟂ k̂, and |E|/|H| = η of its medium. Shown as <i>cos(ωt − β·r)</i>: as t increases, every crest moves along its own k̂.</p>`;
+}
+
+/* ============================ FORMULAS ============================ */
+$('formulas').innerHTML=`
+<div class="f"><b>1. Medium parameters</b>
+ <span class="eq">n = √(ε<sub>r</sub>μ<sub>r</sub>),  η = η₀√(μ<sub>r</sub>/ε<sub>r</sub>) with η₀ = √(μ₀/ε₀) ≈ 376.73 Ω</span>
+ <span class="eq">ω = 2πf,  β = ω√(με) = ωn/c,  λ = 2π/β,  E<sub>0</sub> = η H<sub>0</sub></span></div>
+<div class="f"><b>2. Horizontal polarization (H ∥ ŷ, E in the plane of incidence x–z), incidence at the origin</b>
+ <span class="eq">H<sub>i</sub> = H<sub>i0</sub> e<sup>−jβ₁(x sinθi + z cosθi)</sup> ŷ</span>
+ <span class="eq">H<sub>r</sub> = H<sub>r0</sub> e<sup>−jβ₁(x sinθi − z cosθi)</sup> ŷ</span>
+ <span class="eq">H<sub>t</sub> = H<sub>t0</sub> e<sup>−jβ₂(x sinθt + z cosθt)</sup> ŷ</span></div>
+<div class="f"><b>3. Snell's laws (phase matching at z = 0)</b>
+ <span class="eq">θr = θi,   β₁ sinθi = β₂ sinθt  ⇔  n₁ sinθi = n₂ sinθt</span></div>
+<div class="f"><b>4. Boundary conditions at z = 0</b>
+ <span class="eq">Tangential H:  H<sub>i0</sub> + H<sub>r0</sub> = H<sub>t0</sub>  ⇒  E<sub>i0</sub>/η₁ + E<sub>r0</sub>/η₁ = E<sub>t0</sub>/η₂  ⇒  <b>1 + Γ∥ = (η₁/η₂) τ∥</b>   …(1)</span>
+ <span class="eq">Tangential E:  E<sub>t0</sub> cosθt = E<sub>i0</sub> cosθi − E<sub>r0</sub> cosθi  ⇒  <b>cosθi − Γ∥ cosθi = τ∥ cosθt</b>   …(2)</span></div>
+<div class="f"><b>5. Reflection and transmission coefficients, from (1) and (2)</b>
+ <span class="eq">Γ∥ = (η₁ cosθi − η₂ cosθt) / (η₁ cosθi + η₂ cosθt)</span>
+ <span class="eq">τ∥ = 2η₂ cosθi / (η₁ cosθi + η₂ cosθt)</span>
+ <span class="eq">Power: R = |Γ∥|²,  T = |τ∥|² (η₁/η₂)(cosθt / cosθi),  R + T = 1</span></div>
+<div class="f"><b>6. Brewster angle (Γ∥ = 0)</b>
+ <span class="eq">η₁ cosθi = η₂ cosθt  ⇒  θ<sub>B</sub> = tan⁻¹[ (β₂/η₂) √( (η₁² − η₂²) / (β₂² − β₁²) ) ]</span>
+ <span class="eq">If μ₁ = μ₂:  tan θ<sub>B</sub> = √(ε₂/ε₁) = n₂/n₁  and  θ<sub>B</sub> + θ<sub>t</sub> = 90°</span></div>
+<div class="f"><b>7. Total internal reflection</b>
+ <span class="eq">Possible only if β₁ &gt; β₂ (n₁ &gt; n₂, denser → rarer).  Critical angle: θ<sub>c</sub> = sin⁻¹(β₂/β₁) = sin⁻¹(n₂/n₁)</span>
+ <span class="eq">For θi &gt; θ<sub>c</sub>:  cosθt = √(1 − sin²θt) = ± j√((β₁²/β₂²) sin²θi − 1)</span>
+ <span class="eq">Γ∥ = (η₁ cosθi − η₂ j√…) / (η₁ cosθi + η₂ j√…)  ⇒  <b>|Γ∥| = 1</b></span>
+ <span class="eq">The sign −j is chosen so the medium-2 field decays: e<sup>−αz</sup>, α = β₂√((β₁/β₂)² sin²θi − 1), δ = 1/α</span>
+ <span class="eq">If n₁ &lt; n₂ (rarer → denser): sinθt = (n₁/n₂) sinθi &lt; 1 always ⇒ <b>no TIR</b></span></div>
+<div class="f"><b>Conventions</b>
+ <span class="eq" style="font-family:inherit;font-size:13px">Time-harmonic fields are written as Re{phasor · e<sup>jωt</sup>}. Following the class notes, H<sub>i</sub>, H<sub>r</sub> and H<sub>t</sub> are all referenced along +ŷ, and Γ∥ and τ∥ are defined as ratios of the E amplitudes (E<sub>r0</sub> = Γ∥E<sub>i0</sub>, E<sub>t0</sub> = τ∥E<sub>i0</sub>). Media are lossless, linear, isotropic dielectrics.</span></div>`;
+
+/* ============================ LOOP ============================ */
+let last=performance.now();
+function updTime(){const deg=S.wt*R2D;$('tslider').value=deg.toFixed(1);$('tprog').style.width=(deg/360*100)+'%';
+  $('tread').innerHTML=`t = ${fmtTime(S.wt/M.w)}  (ωt = ${deg.toFixed(1)}°)  ·  T = ${fmtTime(1/S.f)}  ${S.playing?'':'<b>· PAUSED (spatial snapshot)</b>'}`;}
+function loop(now){const dt=Math.min(0.1,(now-last)/1000);last=now;
+  if(S.playing)S.wt=(S.wt+dt*S.speed*Math.PI)%(2*Math.PI);
+  updTime();drawMain();drawTrains();drawSpace();requestAnimationFrame(loop);}
+let rt=null;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{buildView();drawCoef();},120);});
+onChange();requestAnimationFrame(loop);
+</script>
+</body>
+</html>
