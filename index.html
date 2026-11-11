@@ -66,6 +66,7 @@ th{background:#f6f7f9;font-weight:600}
 .tabs button.on{background:#0f172a;color:#fff;border-color:#0f172a}
 .E{color:var(--E);font-weight:600}.H{color:var(--H);font-weight:600}.K{color:var(--K);font-weight:600}
 kbd{border:1px solid #c7ced9;border-bottom-width:2px;border-radius:4px;padding:0 5px;font-size:12px;background:#fff}
+.fullbtn{display:none;margin-left:auto;background:#1e293b;color:#fff;border:1px solid #334155;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;text-decoration:none}.fullbtn:hover{background:#334155}.inframe .fullbtn{display:inline-block}
 </style>
 </head>
 <body>
@@ -79,6 +80,7 @@ kbd{border:1px solid #c7ced9;border-bottom-width:2px;border-radius:4px;padding:0
     <span class="chip"><i style="background:var(--H)"></i>H field</span>
     <span class="chip"><i style="background:var(--K)"></i>Propagation direction k̂</span>
   </div>
+  <a class="fullbtn" href="https://shivakumar-ece.github.io/Horizontally-Polarised-Plane-Wave-Dielectric-Boundary/" target="_blank" rel="noopener">↗ Open Full Page</a>
 </header>
 
 <div class="layout">
@@ -193,6 +195,9 @@ kbd{border:1px solid #c7ced9;border-bottom-width:2px;border-radius:4px;padding:0
 </main>
 </div>
 
+<script>
+try{if(window.self!==window.top)document.documentElement.classList.add("inframe");}catch(e){document.documentElement.classList.add("inframe");}
+</script>
 <script>
 "use strict";
 /* ============================ CONSTANTS & HELPERS ============================ */
